@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>5 Woodworking Projects You Can Build This Weekend</title>
+<style>
+/* ── Reset & Base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1A0E05;
+  --walnut:#2C1606;
+  --mid:#3D2510;
+  --gold:#D4922A;
+  --gold2:#F0B84A;
+  --cream:#F5EBD4;
+  --tan:#C8AD8A;
+  --offwhite:#FDF8F0;
+  --green:#27AE60;
+  --red:#C0392B;
+  --r: 'Georgia',serif;
+  --s: 'Trebuchet MS','Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--cream);
+  font-family:var(--s);
+  overflow-x:hidden;
+}
+
+/* ── GRAIN TEXTURE overlay ── */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:repeating-linear-gradient(
+    165deg,
+    transparent 0px,
+    transparent 18px,
+    rgba(200,150,60,.035) 18px,
+    rgba(200,150,60,.035) 19px
+  );
+  pointer-events:none;z-index:0;
+}
+
+/* ── HERO ── */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:80px 24px 60px;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 55%, rgba(212,146,42,.13) 0%, transparent 70%),
+    linear-gradient(175deg,#0D0A06 0%,#281808 60%,#1A0E05 100%);
+  overflow:hidden;
+}
+
+/* Animated wood rings */
+.hero-rings{
+  position:absolute;
+  width:700px;height:700px;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.hero-rings span{
+  position:absolute;inset:0;
+  border-radius:50%;
+  border:1px solid rgba(212,146,42,.12);
+  animation:pulse 4s ease-in-out infinite;
+}
+.hero-rings span:nth-child(2){inset:60px;animation-delay:.6s}
+.hero-rings span:nth-child(3){inset:120px;animation-delay:1.2s}
+.hero-rings span:nth-child(4){inset:180px;animation-delay:1.8s}
+@keyframes pulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.15;transform:scale(1.03)}}
+
+.hero-eyebrow{
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);
+  background:rgba(212,146,42,.1);
+  border:1px solid rgba(212,146,42,.3);
+  padding:6px 18px;border-radius:20px;
+  margin-bottom:28px;
+  position:relative;z-index:1;
+}
+.hero h1{
+  font-family:var(--r);
+  font-size:clamp(2.6rem,7vw,5rem);
+  line-height:1.05;
+  color:var(--cream);
+  position:relative;z-index:1;
+  max-width:780px;
+}
+.hero h1 em{
+  font-style:normal;
+  color:var(--gold2);
+}
+.hero-sub{
+  margin-top:18px;
+  font-size:1.05rem;
+  color:var(--tan);
+  max-width:520px;
+  line-height:1.65;
+  position:relative;z-index:1;
+}
+.hero-divider{
+  width:80px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:28px auto;
+  position:relative;z-index:1;
+}
+.hero-stats{
+  display:flex;gap:32px;flex-wrap:wrap;justify-content:center;
+  margin-bottom:36px;
+  position:relative;z-index:1;
+}
+.hero-stat{
+  text-align:center;
+}
+.hero-stat strong{
+  display:block;
+  font-size:1.9rem;
+  font-family:var(--r);
+  color:var(--gold);
+}
+.hero-stat span{
+  font-size:.78rem;
+  color:var(--tan);
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
+
+/* Scroll hint */
+.scroll-hint{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  color:var(--tan);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  animation:bounce 2s infinite;z-index:1;
+}
+.scroll-hint svg{width:20px;opacity:.6}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+
+/* ── SECTION LABEL ── */
+.section-label{
+  text-align:center;padding:60px 24px 12px;
+}
+.section-label .eyebrow{
+  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:10px;
+}
+.section-label h2{
+  font-family:var(--r);
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  color:var(--cream);
+}
+.section-label p{
+  color:var(--tan);margin-top:10px;font-size:.95rem;max-width:520px;margin-inline:auto;
+}
+
+/* ── PROJECT CARDS ── */
+.projects{
+  max-width:960px;margin:0 auto;
+  padding:24px 20px 60px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:20px;
+}
+.card{
+  background:linear-gradient(145deg,#2C1A0A,#1E1006);
+  border:1px solid rgba(212,146,42,.18);
+  border-radius:16px;
+  padding:28px 24px 22px;
+  position:relative;
+  overflow:hidden;
+  transition:transform .25s,box-shadow .25s,border-color .25s;
+  cursor:default;
+}
+.card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold));
+  opacity:0;transition:opacity .25s;
+}
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 16px 48px rgba(0,0,0,.5),0 0 0 1px rgba(212,146,42,.35);
+  border-color:rgba(212,146,42,.4);
+}
+.card:hover::before{opacity:1}
+.card-num{
+  font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px;
+}
+.card-emoji{font-size:2.2rem;margin-bottom:12px;display:block}
+.card h3{
+  font-family:var(--r);
+  font-size:1.3rem;color:var(--cream);margin-bottom:6px;
+}
+.card-tagline{font-size:.85rem;color:var(--tan);margin-bottom:16px;line-height:1.5}
+.card-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.pill{
+  font-size:.72rem;padding:4px 10px;border-radius:20px;
+  background:rgba(212,146,42,.12);
+  border:1px solid rgba(212,146,42,.25);
+  color:var(--gold2);
+}
+.pill.green{background:rgba(39,174,96,.12);border-color:rgba(39,174,96,.3);color:#4cd47a}
+.pill.orange{background:rgba(230,126,34,.12);border-color:rgba(230,126,34,.3);color:#f0a04a}
+.card-steps{list-style:none;display:flex;flex-direction:column;gap:8px}
+.card-steps li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:.83rem;color:var(--tan);line-height:1.45;
+}
+.step-dot{
+  min-width:20px;height:20px;border-radius:50%;
+  background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.62rem;font-weight:700;color:var(--ink);
+  margin-top:1px;flex-shrink:0;
+}
+.card-tip{
+  margin-top:16px;padding:10px 12px;
+  background:rgba(212,146,42,.07);
+  border-left:3px solid var(--gold);
+  border-radius:0 8px 8px 0;
+  font-size:.78rem;color:var(--tan);line-height:1.5;
+}
+.card-tip strong{color:var(--gold2);display:block;margin-bottom:2px;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em}
+
+/* ── TEASER STRIP ── */
+.teaser{
+  background:linear-gradient(135deg,#2C1606 0%,#3D2510 50%,#2C1606 100%);
+  border-top:1px solid rgba(212,146,42,.2);
+  border-bottom:1px solid rgba(212,146,42,.2);
+  padding:56px 24px;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.teaser::before{
+  content:'';
+  position:absolute;
+  width:400px;height:400px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(212,146,42,.12),transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.teaser h2{
+  font-family:var(--r);
+  font-size:clamp(1.6rem,4vw,2.6rem);
+  color:var(--cream);margin-bottom:14px;
+  position:relative;
+}
+.teaser h2 span{color:var(--gold2)}
+.teaser p{
+  color:var(--tan);max-width:520px;margin:0 auto 28px;
+  font-size:.95rem;line-height:1.65;position:relative;
+}
+.teaser-number{
+  font-family:var(--r);
+  font-size:clamp(4rem,14vw,9rem);
+  color:rgba(212,146,42,.1);
+  line-height:1;
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;font-weight:900;
+  user-select:none;
+}
+
+/* ── BUTTONS ── */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--s);font-weight:700;
+  border:none;cursor:pointer;
+  border-radius:12px;
+  transition:all .2s;
+  text-decoration:none;
+  position:relative;overflow:hidden;
+}
+.btn::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(255,255,255,.15) 0%,transparent 50%);
+  border-radius:12px;
+  pointer-events:none;
+}
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:var(--ink);
+  padding:16px 36px;font-size:1.05rem;
+  box-shadow:0 6px 24px rgba(212,146,42,.35);
+}
+.btn-gold:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 32px rgba(212,146,42,.5);
+}
+.btn-gold:active{transform:translateY(0)}
+.btn-lg{padding:20px 48px;font-size:1.15rem;border-radius:14px}
+
+/* ── CURIOSITY SECTION ── */
+.curiosity{
+  max-width:760px;margin:0 auto;
+  padding:60px 24px;
+  text-align:center;
+}
+.curiosity .eyebrow{
+  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px;
+}
+.curiosity h2{
+  font-family:var(--r);
+  font-size:clamp(1.7rem,4vw,2.6rem);
+  color:var(--cream);margin-bottom:16px;line-height:1.2;
+}
+.curiosity p{
+  color:var(--tan);font-size:1rem;line-height:1.7;margin-bottom:14px;
+}
+.curiosity p strong{color:var(--cream)}
+.mystery-box{
+  margin:32px auto;
+  padding:28px 32px;
+  background:linear-gradient(145deg,rgba(44,22,6,.9),rgba(30,12,4,.95));
+  border:1px solid rgba(212,146,42,.3);
+  border-radius:16px;
+  max-width:560px;
+  position:relative;
+}
+.mystery-box::before{
+  content:'';
+  position:absolute;top:-1px;left:20%;right:20%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.mystery-list{list-style:none;text-align:left;display:flex;flex-direction:column;gap:12px}
+.mystery-list li{
+  display:flex;align-items:center;gap:12px;
+  font-size:.95rem;color:var(--tan);
+}
+.mystery-list li::before{content:'✦';color:var(--gold);font-size:.8rem;flex-shrink:0}
+.mystery-list li strong{color:var(--cream)}
+
+/* ── TESTIMONIALS ── */
+.testimonials{
+  padding:48px 24px;
+  background:rgba(255,255,255,.02);
+  border-top:1px solid rgba(212,146,42,.1);
+}
+.testimonials-inner{
+  max-width:900px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:18px;
+}
+.tcard{
+  background:rgba(44,22,6,.5);
+  border:1px solid rgba(212,146,42,.15);
+  border-radius:14px;
+  padding:22px 20px;
+}
+.tcard-stars{color:var(--gold2);font-size:1rem;margin-bottom:10px}
+.tcard p{font-size:.88rem;color:var(--tan);line-height:1.6;font-style:italic;margin-bottom:12px}
+.tcard-name{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold)}
+
+/* ── FINAL CTA STRIP ── */
+.final-cta{
+  text-align:center;
+  padding:72px 24px 80px;
+  background:linear-gradient(175deg,#1A0E05,#0D0A06);
+  position:relative;overflow:hidden;
+}
+.final-cta::before{
+  content:'';
+  position:absolute;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,146,42,.09),transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.final-cta .eyebrow{
+  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;position:relative;
+}
+.final-cta h2{
+  font-family:var(--r);
+  font-size:clamp(2rem,5vw,3.4rem);
+  color:var(--cream);margin-bottom:12px;line-height:1.1;
+  position:relative;
+}
+.final-cta h2 span{color:var(--gold2)}
+.final-cta p{
+  color:var(--tan);font-size:1rem;max-width:460px;
+  margin:0 auto 32px;line-height:1.65;position:relative;
+}
+.cta-badge{
+  display:inline-block;
+  background:var(--red);color:#fff;
+  font-size:.78rem;font-weight:700;
+  padding:5px 14px;border-radius:20px;
+  margin-bottom:20px;position:relative;
+  letter-spacing:.05em;
+}
+.guarantee{
+  margin-top:20px;
+  font-size:.8rem;color:var(--tan);opacity:.7;
+}
+
+/* ── POPUP OVERLAY ── */
+.overlay{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(6px);
+  z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+  padding:16px;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s;
+}
+.overlay.active{opacity:1;pointer-events:all}
+
+.popup{
+  background:linear-gradient(160deg,#2C1A0A 0%,#1A0E05 100%);
+  border:1px solid rgba(212,146,42,.35);
+  border-radius:20px;
+  width:100%;max-width:520px;
+  max-height:90vh;overflow-y:auto;
+  position:relative;
+  transform:scale(.93) translateY(20px);
+  transition:transform .3s;
+  box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 0 1px rgba(212,146,42,.2);
+}
+.overlay.active .popup{transform:scale(1) translateY(0)}
+
+.popup-top{
+  background:linear-gradient(135deg,#3D2510,#2C1606);
+  padding:28px 28px 22px;
+  border-radius:20px 20px 0 0;
+  position:relative;
+  border-bottom:1px solid rgba(212,146,42,.2);
+}
+.popup-top::after{
+  content:'';
+  position:absolute;bottom:0;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.popup-close{
+  position:absolute;top:16px;right:18px;
+  background:rgba(212,146,42,.12);
+  border:1px solid rgba(212,146,42,.25);
+  color:var(--tan);
+  width:32px;height:32px;border-radius:50%;
+  font-size:1rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;
+}
+.popup-close:hover{background:rgba(212,146,42,.25);color:var(--cream)}
+.popup-eyebrow{
+  font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:10px;
+}
+.popup h3{
+  font-family:var(--r);
+  font-size:1.6rem;color:var(--cream);
+  line-height:1.2;margin-bottom:6px;
+}
+.popup h3 span{color:var(--gold2)}
+.popup-sub{font-size:.85rem;color:var(--tan);line-height:1.5}
+
+.popup-body{padding:24px 28px 28px}
+
+.popup-stars{font-size:1.1rem;color:var(--gold2);margin-bottom:4px}
+.popup-proof{font-size:.78rem;color:var(--tan);margin-bottom:20px}
+
+.popup-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.popup-list li{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:.9rem;color:var(--tan);line-height:1.45;
+}
+.popup-list li .chk{
+  color:var(--green);font-size:1rem;flex-shrink:0;margin-top:1px;
+}
+
+.popup-price{
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  padding:16px;
+  background:rgba(212,146,42,.06);
+  border:1px solid rgba(212,146,42,.18);
+  border-radius:12px;
+  margin-bottom:18px;
+}
+.price-old{
+  font-size:1rem;color:var(--tan);text-decoration:line-through;opacity:.6;
+}
+.price-new{
+  font-family:var(--r);
+  font-size:2.2rem;color:var(--green);font-weight:700;
+}
+.price-save{
+  background:var(--red);color:#fff;
+  font-size:.7rem;font-weight:700;
+  padding:4px 10px;border-radius:20px;
+}
+
+.popup-btn{
+  display:block;width:100%;
+  text-align:center;text-decoration:none;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:var(--ink);
+  font-family:var(--s);font-weight:700;font-size:1.08rem;
+  padding:18px 24px;border-radius:14px;
+  box-shadow:0 6px 24px rgba(212,146,42,.4);
+  transition:all .2s;
+  position:relative;overflow:hidden;
+  border:none;cursor:pointer;
+}
+.popup-btn::after{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:50%;
+  background:linear-gradient(180deg,rgba(255,255,255,.18),transparent);
+  border-radius:14px 14px 0 0;
+  pointer-events:none;
+}
+.popup-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 32px rgba(212,146,42,.55);
+}
+.popup-btn-sub{
+  text-align:center;font-size:.73rem;color:var(--tan);
+  margin-top:10px;opacity:.8;
+}
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal{
+  opacity:0;transform:translateY(28px);
+  transition:opacity .55s ease,transform .55s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+
+/* ── FOOTER ── */
+footer{
+  text-align:center;padding:28px 20px;
+  border-top:1px solid rgba(212,146,42,.1);
+  font-size:.72rem;color:rgba(200,173,138,.45);
+  line-height:1.7;
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero-rings">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="hero-eyebrow">Free Woodworking Guide · Pinterest Exclusive</div>
+  <h1>5 Projects You Can Build <em>This Weekend</em> — Even If You've Never Used a Saw</h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">Real plans. Real dimensions. No fluff. Scroll down for all 5 step-by-step projects — then discover something that'll change how you build forever.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><strong>5</strong><span>Projects</span></div>
+    <div class="hero-stat"><strong>$15–$65</strong><span>Cost Range</span></div>
+    <div class="hero-stat"><strong>2–8 hrs</strong><span>Build Time</span></div>
+    <div class="hero-stat"><strong>0</strong><span>Experience Needed</span></div>
+  </div>
+  <button class="btn btn-gold" onclick="openPopup()">
+    <span>🪵</span> Unlock 16,000 More Plans Free
+  </button>
+  <div class="scroll-hint">
+    <span>Scroll to see projects</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- ══════════ PROJECTS ══════════ -->
+<div class="section-label reveal">
+  <div class="eyebrow">This Weekend's Build List</div>
+  <h2>5 Projects, Step by Step</h2>
+  <p>Each one includes materials, dimensions and a pro tip from experienced woodworkers.</p>
+</div>
+
+<div class="projects">
+
+  <div class="card reveal">
+    <div class="card-num">Project 01</div>
+    <span class="card-emoji">📦</span>
+    <h3>Floating Wall Shelf</h3>
+    <p class="card-tagline">Clean lines, zero visible hardware. Done in an afternoon.</p>
+    <div class="card-pills">
+      <span class="pill green">Beginner</span>
+      <span class="pill">⏱ 2–3 hrs</span>
+      <span class="pill">💰 $15</span>
+      <span class="pill">📐 36″×8″</span>
+    </div>
+    <ul class="card-steps">
+      <li><span class="step-dot">1</span>Cut 1×8 pine to 36″ and sand all faces</li>
+      <li><span class="step-dot">2</span>Drill pocket holes along the back edge</li>
+      <li><span class="step-dot">3</span>Find studs and mount hidden brackets</li>
+      <li><span class="step-dot">4</span>Slide shelf onto brackets and secure</li>
+      <li><span class="step-dot">5</span>Stain, paint or oil to your taste</li>
+    </ul>
+    <div class="card-tip"><strong>✦ Pro Tip</strong>A laser level is worth every penny — use it once and you'll never hang anything crooked again.</div>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-num">Project 02</div>
+    <span class="card-emoji">🌿</span>
+    <h3>Cedar Planter Box</h3>
+    <p class="card-tagline">Outdoor beauty that genuinely lasts for years.</p>
+    <div class="card-pills">
+      <span class="pill green">Beginner</span>
+      <span class="pill">⏱ 3–4 hrs</span>
+      <span class="pill">💰 $22</span>
+      <span class="pill">📐 24″×10″</span>
+    </div>
+    <ul class="card-steps">
+      <li><span class="step-dot">1</span>Rip cedar fence boards to your desired width</li>
+      <li><span class="step-dot">2</span>Cut front, back, sides and base panels</li>
+      <li><span class="step-dot">3</span>Drill 4–6 drainage holes in the base</li>
+      <li><span class="step-dot">4</span>Assemble with exterior 2″ screws</li>
+      <li><span class="step-dot">5</span>Coat with outdoor sealant if desired</li>
+    </ul>
+    <div class="card-tip"><strong>✦ Pro Tip</strong>Cedar is naturally rot-resistant — skip the primer and let it weather to a beautiful silver-grey.</div>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-num">Project 03</div>
+    <span class="card-emoji">🪜</span>
+    <h3>Kids Step Stool</h3>
+    <p class="card-tagline">A timeless heirloom you build in one sitting.</p>
+    <div class="card-pills">
+      <span class="pill green">Beginner</span>
+      <span class="pill">⏱ 4–5 hrs</span>
+      <span class="pill">💰 $28</span>
+      <span class="pill">📐 12″×9″</span>
+    </div>
+    <ul class="card-steps">
+      <li><span class="step-dot">1</span>Cut two matching side panels on a jigsaw</li>
+      <li><span class="step-dot">2</span>Cut the top step and bottom platform</li>
+      <li><span class="step-dot">3</span>Sand every edge round — safety first</li>
+      <li><span class="step-dot">4</span>Glue and screw the whole assembly</li>
+      <li><span class="step-dot">5</span>Non-toxic paint and rubber grip pads</li>
+    </ul>
+    <div class="card-tip"><strong>✦ Pro Tip</strong>Round your edges generously with 80-grit. Little hands find every sharp corner.</div>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-num">Project 04</div>
+    <span class="card-emoji">🍽️</span>
+    <h3>Hardwood Serving Tray</h3>
+    <p class="card-tagline">A weekend build that genuinely looks like $200.</p>
+    <div class="card-pills">
+      <span class="pill green">Beginner</span>
+      <span class="pill">⏱ 2–3 hrs</span>
+      <span class="pill">💰 $18</span>
+      <span class="pill">📐 18″×12″</span>
+    </div>
+    <ul class="card-steps">
+      <li><span class="step-dot">1</span>Choose a hardwood board and flatten it</li>
+      <li><span class="step-dot">2</span>Cut tray base to 18″ × 12″</li>
+      <li><span class="step-dot">3</span>Drill 1.5″ holes for the dowel handles</li>
+      <li><span class="step-dot">4</span>Glue dowels flush and clamp overnight</li>
+      <li><span class="step-dot">5</span>3 coats of food-safe mineral oil</li>
+    </ul>
+    <div class="card-tip"><strong>✦ Pro Tip</strong>Mineral oil is cheap, food-safe and makes the grain pop like nothing else. 3 coats minimum.</div>
+  </div>
+
+  <div class="card reveal" style="grid-column:1/-1;max-width:580px;margin:0 auto;width:100%">
+    <div class="card-num">Project 05 — Weekend Showpiece</div>
+    <span class="card-emoji">🪑</span>
+    <h3>Garden Bench</h3>
+    <p class="card-tagline">The one your neighbours will ask you about.</p>
+    <div class="card-pills">
+      <span class="pill orange">Intermediate</span>
+      <span class="pill">⏱ 6–8 hrs</span>
+      <span class="pill">💰 $65</span>
+      <span class="pill">📐 48″×18″</span>
+    </div>
+    <ul class="card-steps">
+      <li><span class="step-dot">1</span>Cut 4× leg assemblies from 4×4 posts</li>
+      <li><span class="step-dot">2</span>Cut 6 seat slats from 2×4 at 48″</li>
+      <li><span class="step-dot">3</span>Build two A-frame side supports</li>
+      <li><span class="step-dot">4</span>Attach seat slats with 3″ deck screws</li>
+      <li><span class="step-dot">5</span>Sand smooth — exterior stain and sealer</li>
+    </ul>
+    <div class="card-tip"><strong>✦ Pro Tip</strong>Pre-drill every single hole in pressure-treated lumber. It splits the second you don't.</div>
+  </div>
+
+</div>
+
+<!-- ══════════ TEASER ══════════ -->
+<div class="teaser reveal">
+  <div class="teaser-number">16K</div>
+  <h2>You've built 5.<br><span>There are 15,995 more waiting.</span></h2>
+  <p>Ted's Woodworking has the largest collection of detailed woodworking plans on the internet. Furniture, sheds, toys, garden structures, storage — every plan comes with exact measurements, cut lists and diagrams.</p>
+  <button class="btn btn-gold btn-lg" onclick="openPopup()">
+    <span>🔓</span> See What's Inside
+  </button>
+</div>
+
+<!-- ══════════ CURIOSITY ══════════ -->
+<div class="curiosity reveal">
+  <div class="eyebrow">Here's something most beginners don't know</div>
+  <h2>The single biggest reason most woodworking projects fail isn't skill. It's <em style="font-style:italic;color:var(--gold2)">bad plans.</em></h2>
+  <p>Vague measurements. Missing cut lists. Diagrams that look nothing like the finished piece. Most "free plans" online are incomplete at best — dangerous at worst.</p>
+  <p><strong>What makes the difference</strong> is having plans written the way a real woodworker thinks — with every cut pre-calculated, every joint explained, every material listed down to the last screw.</p>
+  <div class="mystery-box">
+    <ul class="mystery-list">
+      <li><strong>16,000+ plans</strong> — furniture, outdoor, storage, kids toys, home decor</li>
+      <li><strong>Every plan</strong> includes a full cut list, dimensions and assembly diagram</li>
+      <li><strong>Built for real workshops</strong> — not just pretty pictures that never translate to wood</li>
+      <li><strong>Instant download</strong> — you could be building your first plan tonight</li>
+      <li><strong>One payment</strong> — lifetime access, no subscription, no upsell traps</li>
+    </ul>
+  </div>
+  <button class="btn btn-gold" onclick="openPopup()">
+    <span>👀</span> I Want to See the Plans
+  </button>
+</div>
+
+<!-- ══════════ TESTIMONIALS ══════════ -->
+<div class="testimonials">
+  <div class="section-label reveal" style="padding-top:0;padding-bottom:28px">
+    <div class="eyebrow">Real Builders, Real Results</div>
+    <h2>What woodworkers are saying</h2>
+  </div>
+  <div class="testimonials-inner">
+    <div class="tcard reveal">
+      <div class="tcard-stars">★★★★★</div>
+      <p>"I've been woodworking for 3 years and spent hundreds on books. This collection has more useful plans than everything I've bought combined. The cut lists alone save me hours."</p>
+      <div class="tcard-name">— Mike R., Ohio</div>
+    </div>
+    <div class="tcard reveal">
+      <div class="tcard-stars">★★★★★</div>
+      <p>"Built the garden bench from plan #4,217 in one Saturday. My wife cried. That's how good it looked. My neighbours have already asked me to build one for them."</p>
+      <div class="tcard-name">— James T., Texas</div>
+    </div>
+    <div class="tcard reveal">
+      <div class="tcard-stars">★★★★★</div>
+      <p>"I'm a complete beginner. I built a floating shelf, a planter box and a coffee table in my first month. The plans are genuinely idiot-proof — and I mean that as a compliment."</p>
+      <div class="tcard-name">— Sarah K., Oregon</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ FINAL CTA ══════════ -->
+<div class="final-cta reveal">
+  <div class="eyebrow">One Decision. Unlimited Projects.</div>
+  <div class="cta-badge">⚡ 77% OFF — Today Only</div>
+  <h2>Stop searching for plans.<br><span>Start building.</span></h2>
+  <p>16,000 woodworking plans. One small investment. A lifetime of projects you'll actually be proud of.</p>
+  <button class="btn btn-gold btn-lg" onclick="openPopup()">
+    <span>🪵</span> Get Instant Access Now
+  </button>
+  <div class="guarantee">🔒 60-Day Money-Back Guarantee &nbsp;·&nbsp; Instant Download &nbsp;·&nbsp; Secure Checkout</div>
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  This page contains affiliate links. We may earn a commission if you purchase through our link — at no extra cost to you.<br>
+  Results may vary. ClickBank is a registered retailer. © 2025 WoodcraftPlans.
+</footer>
+
+<!-- ══════════════════════════════════
+     POPUP BRIDGE PAGE
+══════════════════════════════════ -->
+<div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
+  <div class="popup" id="popup">
+
+    <div class="popup-top">
+      <button class="popup-close" onclick="closePopup()" aria-label="Close">✕</button>
+      <div class="popup-eyebrow">✦ Exclusive Reader Offer ✦</div>
+      <h3>Unlock <span>16,000+</span><br>Woodworking Plans</h3>
+      <p class="popup-sub">The largest collection on the internet — step-by-step, cut lists included, every skill level.</p>
+    </div>
+
+    <div class="popup-body">
+
+      <div class="popup-stars">★★★★★</div>
+      <div class="popup-proof">Trusted by 174,000+ woodworkers worldwide</div>
+
+      <ul class="popup-list">
+        <li><span class="chk">✅</span>16,000 plans — furniture, garden, storage, toys & more</li>
+        <li><span class="chk">✅</span>Full cut lists, dimensions & exploded diagrams on every plan</li>
+        <li><span class="chk">✅</span>Beginner through advanced — something for every skill level</li>
+        <li><span class="chk">✅</span>DWG/PDF format — works with any device, print-ready</li>
+        <li><span class="chk">✅</span>Instant download — access everything within minutes</li>
+        <li><span class="chk">✅</span>One-time payment — lifetime access, no hidden fees</li>
+        <li><span class="chk">✅</span>60-day no-questions money-back guarantee</li>
+      </ul>
+
+      <div class="popup-price">
+        <div>
+          <div style="font-size:.72rem;color:var(--tan);margin-bottom:2px">Regular price</div>
+          <div class="price-old">$297</div>
+        </div>
+        <div class="price-new">$67</div>
+        <div class="price-save">SAVE 77%</div>
+      </div>
+
+      <a class="popup-btn" href="https://hop.clickbank.net/?affiliate=YOURID&vendor=tedsplans" target="_blank" rel="noopener">
+        YES — Get My 16,000 Plans Now ▶
+      </a>
+      <div class="popup-btn-sub">🔒 Secure checkout via ClickBank &nbsp;·&nbsp; Instant digital access</div>
+
+      <div style="margin-top:20px;padding:14px;background:rgba(39,174,96,.07);border:1px solid rgba(39,174,96,.2);border-radius:10px;text-align:center">
+        <div style="font-size:.8rem;color:#4cd47a;font-weight:700;margin-bottom:4px">🛡️ 60-Day Money-Back Guarantee</div>
+        <div style="font-size:.76rem;color:var(--tan)">Not satisfied for any reason? Get a full refund within 60 days. No questions, no hassle.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── Popup ── */
+function openPopup(){
+  document.getElementById('overlay').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closePopup(){
+  document.getElementById('overlay').classList.remove('active');
+  document.body.style.overflow='';
+}
+function handleOverlayClick(e){
+  if(e.target===document.getElementById('overlay')) closePopup();
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closePopup()});
+
+/* ── Scroll reveal ── */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(el=>{
+    if(el.isIntersecting){
+      el.target.classList.add('visible');
+      observer.unobserve(el.target);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+/* ── Auto popup after 25s (or on scroll past 60%) ── */
+let popupShown=false;
+function maybeShowPopup(){
+  if(popupShown) return;
+  popupShown=true;
+  openPopup();
+}
+setTimeout(maybeShowPopup, 25000);
+window.addEventListener('scroll',()=>{
+  const scrolled=window.scrollY/(document.body.scrollHeight-window.innerHeight);
+  if(scrolled>.60) maybeShowPopup();
+},{passive:true});
+</script>
+</body>
+</html>
